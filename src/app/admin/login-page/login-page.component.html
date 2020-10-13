@@ -1,6 +1,8 @@
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
   <h2>Войти в панель администратора</h2>
-
+  <div class="alert alert-danger" *ngIf="auth.error$ | async as errorMessage">
+      {{errorMessage}}
+  </div>
   <div
     [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
     class="form-control"
@@ -31,5 +33,5 @@
         {{form.get('password').errors.minlength.actualLength}}.</small>
     </div>
   </div>
-  <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Войти</button>
+  <button class="btn btn-primary" type="submit" [disabled]="form.invalid || submitted">Войти</button>
 </form>
