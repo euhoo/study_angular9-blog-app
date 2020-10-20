@@ -36,5 +36,7 @@ export class PostsService {
         )
       );
   }
+  remove = (id: string): Observable<void> => this.http
+    .delete<void>(`${environment.fbDBUrl}/posts/${id}.json`)
 
 }
